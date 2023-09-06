@@ -1,0 +1,22 @@
+//protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative services/demo/demo.proto
+
+syntax = "proto3";
+
+option go_package = "github.com/dotm/grpc-demo/services/demo/demo";
+
+package demo;
+
+message DemoRequest {
+  string requestMessage = 1;
+}
+
+message DemoResponse {
+  string responseMessage = 1;
+}
+
+service Demo {
+  rpc SimpleUnaryMethod(DemoRequest) returns (DemoResponse) {}
+  rpc ServerStreamingMethod(DemoRequest) returns (stream DemoResponse) {}
+  rpc ClientStreamingMethod(stream DemoRequest) returns (DemoResponse) {}
+  rpc BidirectionalStreamingMethod(stream DemoRequest) returns (stream DemoResponse) {}
+}
