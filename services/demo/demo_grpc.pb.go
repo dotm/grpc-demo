@@ -38,7 +38,7 @@ func NewDemoClient(cc grpc.ClientConnInterface) DemoClient {
 
 func (c *demoClient) SimpleUnaryMethod(ctx context.Context, in *DemoRequest, opts ...grpc.CallOption) (*DemoResponse, error) {
 	out := new(DemoResponse)
-	err := c.cc.Invoke(ctx, "/demo.Demo/SimpleUnaryMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/github.dotm.demo.Demo/SimpleUnaryMethod", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *demoClient) SimpleUnaryMethod(ctx context.Context, in *DemoRequest, opt
 }
 
 func (c *demoClient) ServerStreamingMethod(ctx context.Context, in *DemoRequest, opts ...grpc.CallOption) (Demo_ServerStreamingMethodClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[0], "/demo.Demo/ServerStreamingMethod", opts...)
+	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[0], "/github.dotm.demo.Demo/ServerStreamingMethod", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (x *demoServerStreamingMethodClient) Recv() (*DemoResponse, error) {
 }
 
 func (c *demoClient) ClientStreamingMethod(ctx context.Context, opts ...grpc.CallOption) (Demo_ClientStreamingMethodClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[1], "/demo.Demo/ClientStreamingMethod", opts...)
+	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[1], "/github.dotm.demo.Demo/ClientStreamingMethod", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func (x *demoClientStreamingMethodClient) CloseAndRecv() (*DemoResponse, error) 
 }
 
 func (c *demoClient) BidirectionalStreamingMethod(ctx context.Context, opts ...grpc.CallOption) (Demo_BidirectionalStreamingMethodClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[2], "/demo.Demo/BidirectionalStreamingMethod", opts...)
+	stream, err := c.cc.NewStream(ctx, &Demo_ServiceDesc.Streams[2], "/github.dotm.demo.Demo/BidirectionalStreamingMethod", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -192,7 +192,7 @@ func _Demo_SimpleUnaryMethod_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/demo.Demo/SimpleUnaryMethod",
+		FullMethod: "/github.dotm.demo.Demo/SimpleUnaryMethod",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DemoServer).SimpleUnaryMethod(ctx, req.(*DemoRequest))
@@ -277,7 +277,7 @@ func (x *demoBidirectionalStreamingMethodServer) Recv() (*DemoRequest, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Demo_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "demo.Demo",
+	ServiceName: "github.dotm.demo.Demo",
 	HandlerType: (*DemoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
